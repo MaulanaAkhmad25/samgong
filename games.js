@@ -61,7 +61,6 @@ const resultEl = document.querySelector(".result");
 
  
 }
-
   
   function checkUserLose() {
     if (userTotal > 30) {
@@ -70,7 +69,16 @@ const resultEl = document.querySelector(".result");
       compareBtn.classList.add("d-none");
     }
   }
-  
+  //menutup kartu
+  function showBotBackCards() {
+  botCardsEl.innerHTML = ""; 
+
+  botCards.forEach(() => {
+    const cardBack = document.createElement("div");
+    cardBack.classList.add("card", "back"); 
+    botCardsEl.appendChild(cardBack);
+  });
+}
 
   startBtn.addEventListener("click", () => {
     playing = true;
@@ -91,7 +99,9 @@ const resultEl = document.querySelector(".result");
     botCards.push(card);
     tempTotal -= card.value;
   }
+    showBotBackCards();
 
+    
     const firstCard = getRandomCardValue();
 
     userCards.push(firstCard);
