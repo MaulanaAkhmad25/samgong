@@ -37,15 +37,20 @@
             placeholder="Nama"
           />
           <label for="umur" class="form-label">Umur:</label>
-          <input type="number" class="form-control" id="umur" placeholder="0" />
+          <input
+            type="number"
+            class="form-control"
+            id="umur"
+            min="0"
+            placeholder="0"
+          />
           <div class="button-play">
-            <button type="button" class="btn btn-primary" onclick="simpan()">
-              Submit
-            </button>
+            <a id="submit" class="btn btn-primary" onclick="getUserInfo()"
+              >Submit</a
+            >
           </div>
         </form>
       </div>
-      <!-- <div class="rules w-50 h-100"></div> -->
     </main>
     <!-- Content End -->
 
@@ -54,8 +59,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="./app.js">
-      import {simpan, testingModule} from './app.js'
-    </script>
+    <script src="./app.js"></script>
   </body>
 </html>
