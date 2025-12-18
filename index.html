@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Samgong | Fun Game</title>
+  </head>
+  <body>
+    <!-- Content Start -->
+    <main
+      class="d-flex flex-row justify-content-center align-items-center landing-page"
+    >
+      <div class="wrap w-50 h-50">
+        <h1 id="test" class="mt-1 text-center">
+          Samgong | <i class="bi bi-suit-club-fill"></i>
+          <i class="bi bi-suit-diamond-fill"></i>
+          <i class="bi bi-suit-spade-fill"></i>
+          <i class="bi bi-suit-heart-fill"></i>
+        </h1>
+        <form id="myForm" action="" method="post">
+          <label for="nama" class="form-label">Nama Anda:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nama"
+            placeholder="Nama"
+          />
+          <label for="umur" class="form-label">Umur:</label>
+          <input type="number" class="form-control" id="umur" placeholder="0" />
+          <div class="button-play">
+            <button type="button" class="btn btn-primary" onclick="simpan()">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- <div class="rules w-50 h-100"></div> -->
+    </main>
+    <!-- Content End -->
+
+    <div id="rules">
+      <h1>Selamat Datang</h1>
+      <h2>Ini adalah permainan kartu Samgong</h2>
+      <h3>How To Play</h3>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./app.js">
+      import {simpan, testingModule} from './app.js'
+    </script>
+  </body>
+</html>

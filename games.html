@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./games.css" />
+    <title>Samgong - Cara Bermain</title>
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="header">
+        <h1>SAMGONG</h1>
+      </div>
+
+      <div class="table">
+        <div class="player-area">
+          <h2>Player</h2>
+          <div class="cards">
+            <div class="card">
+              <div class="value-top">
+                <span>7</span><i class="bi bi-suit-club-fill"></i>
+              </div>
+              <i class="bi bi-suit-club-fill center"></i>
+              <div class="value-bottom">
+                <span>7</span><i class="bi bi-suit-club-fill"></i>
+              </div>
+            </div>
+            <!-- <div class="card">5</div>
+            <div class="card">8</div>
+            <div class="card">8</div>
+            <div class="card">8</div>
+            <div class="card">8</div> -->
+          </div>
+          <div class="score">Total Kartu: ??</div>
+        </div>
+
+        <div class="player-area">
+          <h2>Bot / CPU</h2>
+          <div class="cards">
+            <div class="card back">?</div>
+            <div class="card back">?</div>
+            <div class="card back">?</div>
+          </div>
+          <div class="score">Kartu Masih Tertutup</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-start">Mulai Bermain</button>
+        <button class="btn btn-draw">Ambil Kartu</button>
+        <button class="btn btn-open">Buka Kartu</button>
+      </div>
+
+      <div class="rules">
+        <h3>Cara Bermain Samgong</h3>
+        <ol>
+          <li>User klik tombol <b>Mulai Bermain</b>.</li>
+          <li>User klik tombol <b>Ambil Kartu</b>.</li>
+          <li>User mendapatkan kartu acak sebanyak 1 kartu.</li>
+          <li>User dapat memilih <b>Buka Kartu</b> jika sudah yakin.</li>
+          <li>
+            Atau user dapat klik <b>Ambil Kartu</b> lagi untuk menambah 1 kartu.
+          </li>
+          <li>
+            Jika <b>Buka Kartu</b>, kartu Bot/CPU akan dibuka untuk
+            dibandingkan.
+          </li>
+          <li>Jika total kartu ≤ 30, nilai tertinggi adalah pemenang.</li>
+          <li>Jika total kartu &gt; 30, nilai terendah adalah pemenang.</li>
+          <li>Permainan berakhir dan ditentukan menang atau kalah.</li>
+        </ol>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
