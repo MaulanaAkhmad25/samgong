@@ -1,165 +1,136 @@
 const startBtn = document.querySelector(".btn-start");
 const addCardBtn = document.querySelector(".btn-draw");
-const openBtn = document.querySelector(".btn-open");
+const compareBtn = document.querySelector(".btn-open");
 
-const playerArea = document.querySelector(".player-area");
-const playerCardsEl = playerArea.querySelector(".cards");
-const playerScoreEl = playerArea.querySelector(".score");
-
+// ===== AREA =====
+const playerArea = document.querySelectorAll(".player-area")[0];
 const botArea = document.querySelectorAll(".player-area")[1];
+
+const userCardsEl = playerArea.querySelector(".cards");
+const userTotalEl = playerArea.querySelector(".score");
+
 const botCardsEl = botArea.querySelector(".cards");
-const botScoreEl = botArea.querySelector(".score");
+const botTotalEl = botArea.querySelector(".score");
+const resultEl = document.querySelector(".result");
+  let userCards = [];
+  let botCards = []; 
+  let userTotal = 0;
+  let botTotal = 0;
+  let playing=false
 
-let userCards = [];
-let userTotal = 0;
+  function getRandomCardValue() {
+    const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    const suits = ["S", "H", "D", "C"];
 
-let botCards = [];
-let botTotal = 0;
+    const card = cards[Math.floor(Math.random() * cards.length)];
+    const suit = suits[Math.floor(Math.random() * suits.length)];
 
-function getRandomCardValue() {
-  const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-  const suits = ["S", "H", "D", "C"];
+    let value = 0;
+    if (card === "A") value = 11;
+    else if (["J", "Q", "K"].includes(card)) value = 10;
+    else value = parseInt(card);
 
-  const card = cards[Math.floor(Math.random() * cards.length)];
-  const suit = suits[Math.floor(Math.random() * suits.length)];
+    const image = `https://deckofcardsapi.com/static/img/${card}${suit}.png`;
 
-  let value = 0;
-  if (card === "A") value = 11;
-  else if (["J", "Q", "K"].includes(card)) value = 10;
-  else value = parseInt(card);
+    return { card, value, image };
+  }
 
-  const image = `https://deckofcardsapi.com/static/img/${card}${suit}.png`;
+  function updateUserDisplay() {
+    userCardsEl.innerHTML = "";
 
-  return { card, suit, value, image };
-}
+    userCards.forEach(c => {
+      const img = document.createElement("img");
+      img.src = c.image;
+      img.width = 80;
+      img.classList.add("me-2");
+      userCardsEl.appendChild(img);
+    });
 
-// function applyCardContainerStyle(container) {
-//   container.style.display = "flex";
-//   container.style.flexDirection = "row";
-//   container.style.gap = "8px";
-//   container.style.alignItems = "center";
-// }
-
-function renderPlayerCards() {
-//   applyCardContainerStyle(playerCardsEl);
-  playerCardsEl.innerHTML = "";
-
-  userCards.forEach(c => {
-    const cardEl = document.createElement("div");
-    cardEl.className = "card";
-    cardEl.style.width = "60px";
-    cardEl.style.height = "90px";
-
-    const img = document.createElement("img");
-    img.src = c.image;
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.objectFit = "contain";
-
-    cardEl.appendChild(img);
-    playerCardsEl.appendChild(cardEl);
-  });
-
-  playerScoreEl.textContent = `Total Kartu: ${userTotal}`;
-}
-
-function renderBotCards(show = false) {
-//   applyCardContainerStyle(botCardsEl);
+     userTotalEl.textContent = `Total Kartu: ${userTotal}`;;
+  }
+  function updateBotDisplay() {
   botCardsEl.innerHTML = "";
 
   botCards.forEach(c => {
-    const cardEl = document.createElement("div");
-    cardEl.className = "card";
-    cardEl.style.width = "60px";
-    cardEl.style.height = "90px";
-
-    if (show) {
-      const img = document.createElement("img");
-      img.src = c.image;
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.style.objectFit = "contain";
-      cardEl.appendChild(img);
-    } else {
-      cardEl.classList.add("back");
-      cardEl.textContent = "?";
-    }
-
-    botCardsEl.appendChild(cardEl);
+    const img = document.createElement("img");
+    img.src = c.image;
+    img.width = 80;
+    img.classList.add("me-2");
+    botCardsEl.appendChild(img);
   });
+
+ 
 }
 
+  
+  function checkUserLose() {
+    if (userTotal > 30) {
+      resultEl.textContent = "Sayang sekali, tapi kamu Kalah";
+      addCardBtn.classList.add("d-none");
+      compareBtn.classList.add("d-none");
+    }
+  }
+  
 
-// function checkUserLose() {
-//   if (userTotal > 30) {
-//     playerScoreEl.textContent = `Total Kartu: ${userTotal} (KALAH)`;
-//     addCardBtn.disabled = true;
-//     openBtn.disabled = true;
-//   }
-// }
+  startBtn.addEventListener("click", () => {
+    playing = true;
+    // reset
+     botCards = []; 
+    userCards = [];
+    userTotal = 0;
+    resultEl.textContent = "";
+    botTotalEl.textContent = "?";
+    userCardsEl.innerHTML = "";
+      
 
-startBtn.addEventListener("click", () => {
-  userCards = [];
-  botCards = [];
-  userTotal = 0;
-
-  playerCardsEl.innerHTML = "";
-  playerScoreEl.textContent = "Total Kartu: ??";
-
-  botTotal = Math.floor(Math.random() * 21) + 20;
-  botScoreEl.textContent = "Kartu Masih Tertutup";
-
-  const botCardCount = Math.floor(Math.random() * 3) + 3;
-
-  for (let i = 0; i < botCardCount; i++) {
-    botCards.push(getRandomCardValue());
+    // bot random dari awal
+    botTotal = Math.floor(Math.random() * 21) + 20; // 0 - 40
+    let tempTotal = botTotal;
+    while (tempTotal > 0) {
+    const card = getRandomCardValue();
+    botCards.push(card);
+    tempTotal -= card.value;
   }
 
-  renderBotCards(false);
+    const firstCard = getRandomCardValue();
 
-  const firstCard = getRandomCardValue();
-  userCards.push(firstCard);
-  userTotal += firstCard.value;
+    userCards.push(firstCard);
+    userTotal += firstCard.value;
 
-  renderPlayerCards();
+    updateUserDisplay();
 
-  addCardBtn.disabled = false;
-  openBtn.disabled = false;
-});
+    startBtn.classList.remove("d-none");
+    startBtn.textContent = "Reset";
+    addCardBtn.classList.remove("d-none");
+    compareBtn.classList.remove("d-none");
 
-addCardBtn.addEventListener("click", () => {
-  const newCard = getRandomCardValue();
-  userCards.push(newCard);
-  userTotal += newCard.value;
+    
+  });
 
-  renderPlayerCards();
-  checkUserLose();
-});
+  addCardBtn.addEventListener("click", () => {
+     if (!playing) return;
+    const newCard = getRandomCardValue();
 
-openBtn.addEventListener("click", () => {
-  renderBotCards(true);
-  botScoreEl.textContent = `Total Kartu Bot: ${botTotal}`;
+    userCards.push(newCard);
+    userTotal += newCard.value;
 
-  let result = "";
-
-    if (botTotal > 30) {
-      if (userTotal < botTotal) {
-        playerScoreEl.textContent = "Selamat, Kamu Menang!";
-      } else {
-        playerScoreEl.textContent = "Sayang sekali, tapi kamu Kalah!"
-      }
+    updateUserDisplay();
+    checkUserLose();
+  });
+  document.body.addEventListener("click", function () {
+  const audio = document.getElementById("backsound");
+  audio.play();
+    }, { once: true });
+  compareBtn.addEventListener("click", () => {
+     if (!playing) return;
+     updateBotDisplay();
+     botTotalEl.textContent = `Total Kartu BOT : ${botTotal}`;;
+    if (botTotal > 30 && userTotal < botTotal) {
+      resultEl.textContent = "Selamat, Kamu Menang!";
+    } else if (userTotal < botTotal) {
+      resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
     } else {
-      if (userTotal > botTotal) {
-        playerScoreEl.textContent = "Selamat, Kamu Menang!";
-      } else if (userTotal < botTotal) {
-        playerScoreEl.textContent = "Sayang sekali, tapi kamu Kalah!"
-    }   else {
-        playerScoreEl.textContent = "Draw!";
+      resultEl.textContent = "Draw!";
     }
-    }
-
-  playerScoreEl.textContent += ` — ${result}`;
-
-  addCardBtn.disabled = true;
-  openBtn.disabled = true;
-});
+         playing = false;
+  });

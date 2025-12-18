@@ -1,30 +1,26 @@
+
 function getUserInfo() {
-  // console.dir(document.getElementById("myForm"));
-  let nameInput = document.getElementById("nama").value;
-  let ageInput = document.getElementById("umur").value;
-  localStorage.setItem("username", nameInput);
-  localStorage.setItem("age", ageInput);
-  let username = localStorage.getItem("username");
-  let age = localStorage.getItem("age");
-  checkUserInfo(username, age);
-}
+  const nama = document.getElementById("nama").value.trim();
+  const umur = document.getElementById("umur").value;
 
-function checkUserInfo(name, age) {
-  if (!name) {
-    return window.alert(
-      "Anda belum input nama, Silahkan input terlebih dahulu!"
-    );
+  if (nama === "") {
+    alert("Nama tidak boleh kosong!");
+    return;
   }
 
-  if (!age) {
-    return window.alert("Umur yang anda ketik salah!");
+  if (umur === "" || umur < 18) {
+    alert("Kamu belum cukup umur");
+    return;
   }
 
-  if (age < 18) {
-    return window.alert("Adik kecil belum boleh main");
-  }
+ 
 
-  const buttonSubmit = document.getElementById("submit");
 
-  return buttonSubmit.setAttribute("href", "./games.html");
-}
+  localStorage.setItem("playerName", nama);
+  localStorage.setItem("playerAge", umur);
+  localStorage.setItem("music", "on");
+
+  window.location.href = "./games.html";
+
+
+} 

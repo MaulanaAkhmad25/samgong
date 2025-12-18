@@ -68,7 +68,6 @@ body {
 .card {
   min-width: 75px;
   min-height: 100px;
-  background: #f5f5f5;
   border-radius: 8px;
   display: flex;
   justify-content: space-around;
@@ -102,7 +101,17 @@ body {
   align-self: flex-end;
   transform: rotate(180deg);
 }
+.cards-img {
+  background: black;
+  border-radius: 8px;
+  display: block;
+}
 
+.cards img {
+  background: transparent;
+  border-radius: 8px;
+  display: block;
+}
 .card.back {
   background: repeating-linear-gradient(
     45deg,
@@ -115,6 +124,12 @@ body {
 }
 
 .score {
+  text-align: center;
+  font-size: 16px;
+  color: #cfcfe6;
+  align-self: first baseline;
+}
+.result {
   text-align: center;
   font-size: 16px;
   color: #cfcfe6;
