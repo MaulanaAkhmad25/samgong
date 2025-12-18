@@ -59,7 +59,6 @@ const resultEl = document.querySelector(".result");
     botCardsEl.appendChild(img);
   });
 
- 
 }
   
   function checkUserLose() {
@@ -135,12 +134,14 @@ const resultEl = document.querySelector(".result");
      if (!playing) return;
      updateBotDisplay();
      botTotalEl.textContent = `Total Kartu BOT : ${botTotal}`;;
-    if (botTotal > 30 && userTotal < botTotal) {
-      resultEl.textContent = "Selamat, Kamu Menang!";
-    } else if (userTotal < botTotal) {
-      resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
-    } else {
+     if(botTotal>30){
+      resultEl.textContent="Selamat.kamu menang"
+    } else if (userTotal===botTotal) {
       resultEl.textContent = "Draw!";
+    } else if (userTotal>botTotal) {
+      resultEl.textContent = "Selamat,kamu menang!";
+    } else{
+      resultEl.textContent="Sayang sekali, tapi kamu Kalah!"
     }
          playing = false;
   });
