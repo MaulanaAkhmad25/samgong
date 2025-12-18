@@ -1,0 +1,69 @@
+:root {
+  font-size: 16px;
+  --bg-color-main: #434142
+}
+
+.bi-suit-diamond-fill,
+.bi-suit-heart-fill {
+  color: rgb(177, 0, 0);
+
+}
+
+#header {
+  text-align: center;
+}
+.landing-page {
+  background-image: url(./assets/images/bg-5.jpg);
+  height: 100vh;
+  background-size: contain;
+  background-position: center;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333331;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px 10px black;
+  min-width: 320px;
+  min-height: 320px;
+  max-width: 512px;
+}
+
+.wrap h1 {
+  font-size: 2.5rem;
+}
+
+.wrap form {
+  margin: 1rem 0.5rem 0.5rem;
+  width: 80%;
+}
+
+.wrap label {
+  margin-top: 1rem;
+}
+
+.button-play {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.button-play button {
+  width: 50%;
+}
+
+
+@media (max-width: 866px) {
+  .wrap h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 642px) {
+  .wrap h1 {
+    font-size: 1.5rem;
+  }
+}
