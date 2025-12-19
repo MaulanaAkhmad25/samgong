@@ -30,7 +30,7 @@ const resultEl = document.querySelector(".result");
     else if (["J", "Q", "K"].includes(card)) value = 10;
     else value = parseInt(card);
 
-    const image = `https://deckofcardsapi.com/static/img/${card}${suit}.png`;
+    const image =`assets/images/PNG-cards-1.3/${card}_of_${suit}.png`;
 
     return { card, value, image };
   }
