@@ -44,7 +44,7 @@ function getRandomCardValue() {
   else if (["J", "Q", "K"].includes(card)) value = 10;
   else value = parseInt(card);
 
-  const image = `https://deckofcardsapi.com/static/img/${card}${suit}.png`;
+  const image = `assets/images/PNG-cards-1.3/${card}_of_${suit}.png`;
 
   return { card, value, image };
 }
@@ -132,6 +132,9 @@ addCardBtn.addEventListener("click", () => {
   userCards.push(newCard);
   userTotal += newCard.value;
 
+  userCards.push(newCard);
+  userTotal += newCard.value;
+
   updateUserDisplay();
   checkUserLose();
 });
@@ -147,12 +150,14 @@ compareBtn.addEventListener("click", () => {
   if (!playing) return;
   updateBotDisplay();
   botTotalEl.textContent = `Total Kartu BOT : ${botTotal}`;
-  if (botTotal > 30 && userTotal < botTotal) {
-    resultEl.textContent = "Selamat, Kamu Menang!";
-  } else if (userTotal < botTotal) {
-    resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
-  } else {
+  if (botTotal > 30) {
+    resultEl.textContent = "Selamat.kamu menang";
+  } else if (userTotal === botTotal) {
     resultEl.textContent = "Draw!";
+  } else if (userTotal > botTotal) {
+    resultEl.textContent = "Selamat,kamu menang!";
+  } else {
+    resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
   }
   playing = false;
 });
