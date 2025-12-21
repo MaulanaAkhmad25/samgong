@@ -143,6 +143,7 @@ document.body.addEventListener(
   "click",
   function () {
     const audio = document.getElementById("backsound");
+    audio.volume = 0.25;
     audio.play();
   },
   { once: true }
@@ -173,6 +174,12 @@ compareBtn.addEventListener("click", () => {
       }
     }
   }
+
+  addCardBtn.classList.add("d-none");
+  compareBtn.classList.add("d-none");
+
+  startBtn.classList.remove("d-none");
+  startBtn.textContent = "Main Lagi";
 
   playing = false;
 });
