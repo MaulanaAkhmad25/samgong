@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2'
 function getUserInfo() {
   const nama = document.getElementById("nama").value.trim();
   const umur = document.getElementById("umur").value;
