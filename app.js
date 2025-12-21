@@ -8,7 +8,6 @@ function getUserInfo() {
       title: "Oops...",
       text: "Nama tidak boleh kosong!",
     });
-    // alert("Nama tidak boleh kosong!");
   }
 
   if (umur.length === 0) {
@@ -17,7 +16,6 @@ function getUserInfo() {
       title: "Oops...",
       text: "Umur tidak boleh kosong!",
     });
-    // return alert("Umur tidak boleh kosong!");
   }
 
   if (umur < 18) {
@@ -26,7 +24,6 @@ function getUserInfo() {
       title: `Maaf ${nama} <span class="bi bi-emoji-frown"></span>`,
       text: "Kamu belum cukup umur",
     });
-    // return alert("Kamu belum cukup umur");
   }
 
   localStorage.setItem("playerName", nama);
@@ -42,13 +39,6 @@ function getUserInfo() {
       window.location.href = "./games.html";
     }
   });
-
-  // window.location.href = "./games.html";
-
-  // return Swal.fire({
-  //   title: `Hallo ${nama}, Welcome and Goodluck Have Fun!`,
-  //   icon: "success",
-  // });
 }
 
 function welcomeAlert(name) {
