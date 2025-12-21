@@ -1,3 +1,5 @@
+const playerName = localStorage.getItem("playerName");
+
 const startBtn = document.querySelector(".btn-start");
 const addCardBtn = document.querySelector(".btn-draw");
 const compareBtn = document.querySelector(".btn-open");
@@ -5,6 +7,7 @@ const compareBtn = document.querySelector(".btn-open");
 // ===== AREA =====
 const playerArea = document.querySelectorAll(".player-area")[0];
 const botArea = document.querySelectorAll(".player-area")[1];
+playerArea.querySelector("h2").innerHTML = playerName;
 
 const userCardsEl = playerArea.querySelector(".cards");
 const userTotalEl = playerArea.querySelector(".score");
@@ -62,6 +65,7 @@ function updateUserDisplay() {
 
   userTotalEl.textContent = `Total Kartu: ${userTotal}`;
 }
+
 function updateBotDisplay() {
   botCardsEl.innerHTML = "";
 
@@ -132,12 +136,9 @@ addCardBtn.addEventListener("click", () => {
   userCards.push(newCard);
   userTotal += newCard.value;
 
-  userCards.push(newCard);
-  userTotal += newCard.value;
-
   updateUserDisplay();
-  checkUserLose();
 });
+
 document.body.addEventListener(
   "click",
   function () {
@@ -146,18 +147,32 @@ document.body.addEventListener(
   },
   { once: true }
 );
+
 compareBtn.addEventListener("click", () => {
   if (!playing) return;
   updateBotDisplay();
   botTotalEl.textContent = `Total Kartu BOT : ${botTotal}`;
-  if (botTotal > 30) {
-    resultEl.textContent = "Selamat.kamu menang";
+  if (botTotal > 30 && userTotal <= 30) {
+    resultEl.textContent = "Selamat, kamu menang!";
+  } else if (userTotal > 30 && botTotal <= 30) {
+    resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
   } else if (userTotal === botTotal) {
     resultEl.textContent = "Draw!";
-  } else if (userTotal > botTotal) {
-    resultEl.textContent = "Selamat,kamu menang!";
   } else {
-    resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
+    if (userTotal > 30 && botTotal > 30) {
+      if (userTotal < botTotal) {
+        resultEl.textContent = "Selamat, kamu menang!";
+      } else {
+        resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
+      }
+    } else if (userTotal <= 30 && botTotal <= 30) {
+      if (userTotal > botTotal) {
+        resultEl.textContent = "Selamat, kamu menang!";
+      } else {
+        resultEl.textContent = "Sayang sekali, tapi kamu Kalah!";
+      }
+    }
   }
+
   playing = false;
 });
