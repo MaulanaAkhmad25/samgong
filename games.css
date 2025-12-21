@@ -46,6 +46,7 @@ body {
 }
 
 .player-area {
+
   background: #22223a;
   border-radius: 12px;
   padding: 16px;
@@ -127,8 +128,8 @@ body {
   text-align: center;
   font-size: 16px;
   color: #cfcfe6;
-  align-self: first baseline;
 }
+
 .result {
   text-align: center;
   font-size: 16px;

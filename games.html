@@ -26,19 +26,14 @@
         <div class="player-area">
           <h2>Player</h2>
           <div class="cards">
-            
-              
-                <div class="card back">?</div>
-
-             
-
-            </div>
+            <div class="card back">?</div>
+          </div>
           <div class="result"></div>
 
           <div class="score">Total Kartu: ??</div>
         </div>
 
-          <div class="player-area">
+        <div class="player-area">
           <h2>Bot / CPU</h2>
           <div class="cards d-flex gap-2 align-items-center flex-wrap">
             <div class="card back">?</div>
@@ -51,8 +46,8 @@
 
       <div class="controls">
         <button class="btn btn-start">Mulai Bermain</button>
-        <button class="btn btn-draw">Ambil Kartu</button>
-        <button class="btn btn-open">Buka Kartu</button>
+        <button class="btn btn-draw d-none">Ambil Kartu</button>
+        <button class="btn btn-open d-none">Buka Kartu</button>
       </div>
 
       <div class="rules">
@@ -81,10 +76,10 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="games.js"></script>
     <audio id="backsound" loop>
-  <source src="./assets/music/casino.mp3" type="audio/mpeg" />
-</audio>
-
+      <source src="./assets/music/casino.mp3" type="audio/mpeg" />
+    </audio>
   </body>
-</html> 
+</html>
